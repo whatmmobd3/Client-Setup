@@ -1,23 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
-import {Provider} from "react-redux"
-import {createStore} from "redux"
-import reducers from './components/reducers'
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
 
+import reducers from './reducers'
 import Welcome from "./components/Welcome";
 import App from "./components/App";
-import Signup from './components/auth/Signup';
+import Signup from "./components/auth/Signup";
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
-  <Provider store={createStore(reducers,{})}>
-
-  <BrowserRouter>
-    <App>
-      <Route extract path="/" component={Welcome} />
-      <Route  path="/signup" component={Signup} />
-    </App>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App>
+        <Route extract path="/" component={Welcome} />
+        <Route path="/signup" component={Signup} />
+      </App>
+    </BrowserRouter>
   </Provider>,
   document.querySelector("#root")
 );
