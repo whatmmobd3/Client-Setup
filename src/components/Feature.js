@@ -1,4 +1,5 @@
 import React from "react";
+import requireAuth from './requireAuth'
 
 class App extends React.Component {
   render() {
@@ -6,4 +7,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default requireAuth(App);
