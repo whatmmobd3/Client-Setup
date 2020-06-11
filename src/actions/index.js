@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AUTH_USER,AUTH_ERROR } from "./types";
+import { AUTH_USER, AUTH_ERROR } from "./types";
 
 export const signup = (formProps) => async (dispatch) => {
   try {
@@ -12,11 +12,9 @@ export const signup = (formProps) => async (dispatch) => {
       payload: response.data.token,
     });
   } catch (error) {
-    console.log(error);
-    
     dispatch({
       type: AUTH_ERROR,
-      payload: 'Email in use'
+      payload: "Email in use",
     });
   }
 };
