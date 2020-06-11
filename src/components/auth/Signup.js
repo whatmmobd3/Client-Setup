@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 class App extends React.Component {
   onSubmit = (formProps) => {
-    this.props.signup(formProps);
+    this.props.signup(formProps,() => {
+      this.props.history.push('/feature')
+    });
   };
   render() {
     const { handleSubmit } = this.props;
